@@ -1,6 +1,4 @@
-﻿using System;
-using FCMDotNet;
-using NUnit.Framework;
+﻿using FCMDotNet;
 
 namespace FCMDotNetExample
 {

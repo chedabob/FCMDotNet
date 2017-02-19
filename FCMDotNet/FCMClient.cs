@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Net;
 using System.Threading.Tasks;
 using FCMDotNet.Model;
@@ -9,13 +10,15 @@ namespace FCMDotNet
     public class FCMClient : IFCMClient
     {
         private readonly RestClient _restClient;
-        private readonly string _fcmServerKey;
 
         public FCMClient(string fcmServerKey)
         {
-            _fcmServerKey = fcmServerKey;
+            if (string.IsNullOrEmpty(fcmServerKey))
+            {
+                throw new ArgumentException($"{nameof(fcmServerKey)} cannot be null or empty");
+            }
             _restClient = new RestClient("https://fcm.googleapis.com/");
-            _restClient.AddDefaultHeader("Authorization", "key=" + _fcmServerKey);
+            _restClient.AddDefaultHeader("Authorization", "key=" + fcmServerKey);
         }
 
         public async Task PostMessage(FCMMessage message)
