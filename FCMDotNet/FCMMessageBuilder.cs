@@ -19,7 +19,6 @@ namespace FCMDotNet
 
         public FCMMessageBuilder SetRegistrationToken(string registrationToken)
         {
-
             _to = registrationToken;
             return this;
         }
@@ -46,7 +45,7 @@ namespace FCMDotNet
             // For now only a body is a requirement, but for iOS silent pushes this will not be necessary
             if (string.IsNullOrEmpty(_body))
             {
-                throw new ArgumentException("You must supply a message body");
+                throw new ArgumentException("You must supply a message");
             }
 
             return new FCMMessage(_to, new FCMMessageNotification(_title, _body));
