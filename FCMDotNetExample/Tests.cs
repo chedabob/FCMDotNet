@@ -1,15 +1,29 @@
 ﻿using System;
+using FCMDotNet;
 using NUnit.Framework;
 
 namespace FCMDotNetExample
 {
-    [TestFixture]
-    public class Tests
+
+    public class Example
     {
-        [Test]
-        public void Test1()
+        static void Main(string[] args)
         {
-            Assert.True(true);
+            var fcmServerKey = "<ADD THIS>";
+            var client = new FCMClient(fcmServerKey);
+
+
+            var registrationToken = "<ADD THIS>";
+            var message = "Test";
+
+            var builder = new FCMMessageBuilder();
+            builder.SetMessage(message);
+            builder.SetRegistrationToken(registrationToken);
+
+            var msg = builder.Build();
+
+
+            client.PostMessage(msg).Wait();
         }
     }
 }
