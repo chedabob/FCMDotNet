@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Threading.Tasks;
+using FCMDotNet.Model;
 using RestSharp;
 
 namespace FCMDotNet
@@ -14,13 +15,13 @@ namespace FCMDotNet
         {
             _fcmServerKey = fcmServerKey;
             _restClient = new RestClient("https://fcm.googleapis.com/");
+            _restClient.AddDefaultHeader("Authorization", "key=" + _fcmServerKey);
         }
 
         public async Task PostMessage(FCMMessage message)
         {
             var request = new RestRequest("fcm/send", Method.POST);
             request.AddJsonBody(message);
-            request.AddHeader("Authorization", "key=" + _fcmServerKey);
 
             var response = await _restClient.ExecuteTaskAsync(request);
 

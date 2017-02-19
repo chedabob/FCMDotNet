@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace FCMDotNetTest
 {
     [TestFixture]
-    public class Tests
+    public class TestMessageBuilder
     {
         [Test]
         public void Test1()
