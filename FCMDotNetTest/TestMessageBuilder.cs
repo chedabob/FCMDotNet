@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using FCMDotNet;
 using NUnit.Framework;
 
@@ -9,7 +10,7 @@ namespace FCMDotNetTest
     {
 
         [Test]
-        public void TestExcptionThrownWhenNothingSet()
+        public void TestExceptionThrownWhenNothingSet()
         {
             var builder = new FCMMessageBuilder();
 
@@ -17,7 +18,7 @@ namespace FCMDotNetTest
         }
 
         [Test]
-        public void TestExcptionThrownWhenNoMessageSet()
+        public void TestExceptionThrownWhenNoMessageSet()
         {
 
             var builder = new FCMMessageBuilder();
@@ -27,7 +28,7 @@ namespace FCMDotNetTest
         }
 
         [Test]
-        public void TestExcptionThrownWhenNoDestSet()
+        public void TestExceptionThrownWhenNoDestSet()
         {
 
             var builder = new FCMMessageBuilder();
@@ -37,7 +38,7 @@ namespace FCMDotNetTest
         }
 
         [Test]
-        public void TestExcptionThrownWhenTitleSetButNoMessage()
+        public void TestExceptionThrownWhenTitleSetButNoMessage()
         {
 
             var builder = new FCMMessageBuilder();
@@ -75,6 +76,20 @@ namespace FCMDotNetTest
 
 
             Assert.That(res.To, Is.EqualTo(regToken));
+        }
+
+        [Test]
+        public void TestRegistrationIdsSet()
+        {
+            var regIds = new List<string> {"1234", "4567", "7890"};
+            var builder = new FCMMessageBuilder();
+            builder.SetMessage("empty");
+            builder.SetRegistrationIds(regIds);
+
+            var res = builder.Build();
+
+            Assert.That(res.To, Is.Null);
+            Assert.That(res.RegIds, Is.EquivalentTo(regIds));
         }
 
         [Test]

@@ -7,7 +7,7 @@ using FCMDotNet.Model;
 
 namespace FCMDotNet
 {
-    class FCMException : Exception
+    public class FCMException : Exception
     {
         private readonly FCMResponse _response;
 

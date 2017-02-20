@@ -1,4 +1,7 @@
-﻿namespace FCMDotNet.Model
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace FCMDotNet.Model
 {
     /// <summary>
     /// Base for the Firebase payload
@@ -6,6 +9,11 @@
     /// </summary>
     public class FCMMessage
     {
+        /// <summary>
+        /// List of registration Ids to send to
+        /// </summary>
+        public IList<string> RegIds { get; }
+
         /// <summary>
         /// The message recipient
         /// </summary>
@@ -24,6 +32,11 @@
         {
             To = to;
             Notification = notification;
+        }
+
+        protected internal FCMMessage(IList<string> regIds, FCMMessageNotification notification)
+        {
+            RegIds = regIds;
         }
     }
 }

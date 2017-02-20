@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using FCMDotNet.Model;
 
 namespace FCMDotNet
@@ -11,6 +12,8 @@ namespace FCMDotNet
         private string _to;
         private string _title;
         private string _body;
+        private IList<string> _regIds;
+
         public FCMMessageBuilder SetTopic(string topic)
         {
             if (!string.IsNullOrEmpty(topic))
@@ -40,9 +43,9 @@ namespace FCMDotNet
 
         public FCMMessage Build()
         {
-            if (string.IsNullOrEmpty(_to))
+            if (!(!string.IsNullOrEmpty(_to) || _regIds?.Count > 0))
             {
-                throw new ArgumentException("You must supply a topic or registration token");
+                throw new ArgumentException("You must supply a topic, registration token, or registration ids");
             }
 
             // For now only a body is a requirement, but for iOS silent pushes this will not be necessary
@@ -51,7 +54,20 @@ namespace FCMDotNet
                 throw new ArgumentException("You must supply a message");
             }
 
-            return new FCMMessage(_to, new FCMMessageNotification(_title, _body));
+            if (_regIds?.Count > 0)
+            {
+                return new FCMMessage(_regIds, new FCMMessageNotification(_title, _body));
+            }
+            else
+            {
+                return new FCMMessage(_to, new FCMMessageNotification(_title, _body));
+            }
+        }
+
+        public FCMMessageBuilder SetRegistrationIds(IList<string> regIds)
+        {
+            _regIds = regIds;
+            return this;
         }
     }
 }
