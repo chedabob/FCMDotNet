@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/chedabob/FCMDotNet/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Initial release</releaseNotes>
+    <releaseNotes>Support for sending multiple Reg Ids</releaseNotes>
     <copyright>Copyright 2017</copyright>
     <tags>firebase fcm gcm apns</tags>
   </metadata>
