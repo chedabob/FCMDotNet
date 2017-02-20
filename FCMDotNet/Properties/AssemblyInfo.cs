@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 
 [assembly: AssemblyTitle("FCMDotNet")]
-[assembly: AssemblyDescription("Minimal wrapper for Firebase Cloud Messaing")]
+[assembly: AssemblyDescription("Minimal wrapper for Firebase Cloud Messaging")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("chedabob")]
 [assembly: AssemblyProduct("FCMDotNet")]
