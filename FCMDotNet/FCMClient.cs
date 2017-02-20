@@ -7,10 +7,17 @@ using RestSharp;
 
 namespace FCMDotNet
 {
+    /// <summary>
+    /// FCM Client
+    /// </summary>
     public class FCMClient : IFCMClient
     {
         private readonly RestClient _restClient;
 
+        /// <summary>
+        /// Creates an FCM Client
+        /// </summary>
+        /// <param name="fcmServerKey">FCM Server Key. Retrieve this from the Firebase console. See https://firebase.google.com/docs/cloud-messaging/server#auth</param>
         public FCMClient(string fcmServerKey)
         {
             if (string.IsNullOrEmpty(fcmServerKey))

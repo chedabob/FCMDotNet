@@ -3,6 +3,9 @@ using FCMDotNet.Model;
 
 namespace FCMDotNet
 {
+    /// <summary>
+    /// Builds FCM paylods
+    /// </summary>
     public class FCMMessageBuilder
     {
         private string _to;

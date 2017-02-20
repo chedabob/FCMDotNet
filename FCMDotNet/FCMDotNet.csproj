@@ -47,6 +47,7 @@
     <Compile Include="IFCMClient.cs" />
     <Compile Include="Model\FCMMessage.cs" />
     <Compile Include="Model\FCMMessageNotification.cs" />
+    <Compile Include="Model\FCMResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
