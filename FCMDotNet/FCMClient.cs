@@ -7,7 +7,9 @@ using FCMDotNet.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using RestSharp;
+using RestSharp.Deserializers;
 using RestSharp.Serializers;
+using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 namespace FCMDotNet
 {
@@ -35,23 +37,22 @@ namespace FCMDotNet
             _jsonSerializer = new NewtonsoftJSONSerializer();
         }
 
-        public async Task PostMessage(FCMMessage message)
+        public async Task<FCMResponse> PostMessage(FCMMessage message)
         {
-            var request = new RestRequest("fcm/send", Method.POST);
-            request.JsonSerializer = _jsonSerializer;
+            var request = new RestRequest("fcm/send", Method.POST) {JsonSerializer = _jsonSerializer};
             request.AddJsonBody(message);
-            
 
-            var response = await _restClient.ExecuteTaskAsync(request);
+            var response = await _restClient.ExecuteTaskAsync<FCMResponse>(request);
 
             var statusCode = response.StatusCode;
+            var responseData = response.Data;
             if (statusCode == HttpStatusCode.OK)
             {
-                // TODO Extract message
+                return responseData;
             }
             else
             {
-                // TODO Do something with an error
+               throw new FCMException(responseData);
             }
         }
     }

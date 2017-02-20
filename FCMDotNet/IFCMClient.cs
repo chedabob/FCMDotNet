@@ -10,6 +10,6 @@ namespace FCMDotNet
         /// </summary>
         /// <param name="message">Message to send. Use FCMMessageBuilder to construct it</param>
         /// <returns></returns>
-        Task PostMessage(FCMMessage message);
+        Task<FCMResponse> PostMessage(FCMMessage message);
     }
 }
