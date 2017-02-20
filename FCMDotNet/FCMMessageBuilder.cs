@@ -41,6 +41,17 @@ namespace FCMDotNet
             return this;
         }
 
+
+        public FCMMessageBuilder SetRegistrationIds(IList<string> regIds)
+        {
+            if (regIds?.Count < 1 || regIds?.Count > 1000)
+            {
+                throw new ArgumentException("Registration Ids must be between 1 and 1000");
+            }
+            _regIds = regIds;
+            return this;
+        }
+
         public FCMMessage Build()
         {
             if (!(!string.IsNullOrEmpty(_to) || _regIds?.Count > 0))
@@ -64,10 +75,5 @@ namespace FCMDotNet
             }
         }
 
-        public FCMMessageBuilder SetRegistrationIds(IList<string> regIds)
-        {
-            _regIds = regIds;
-            return this;
-        }
     }
 }
