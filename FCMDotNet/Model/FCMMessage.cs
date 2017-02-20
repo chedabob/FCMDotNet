@@ -12,7 +12,7 @@ namespace FCMDotNet.Model
         /// <summary>
         /// List of registration Ids to send to
         /// </summary>
-        public IList<string> RegIds { get; }
+        public IList<string> Registration_Ids { get; }
 
         /// <summary>
         /// The message recipient
@@ -34,9 +34,10 @@ namespace FCMDotNet.Model
             Notification = notification;
         }
 
-        protected internal FCMMessage(IList<string> regIds, FCMMessageNotification notification)
+        protected internal FCMMessage(IList<string> registrationIds, FCMMessageNotification notification)
         {
-            RegIds = regIds;
+            Registration_Ids = registrationIds;
+            Notification = notification;
         }
     }
 }

@@ -89,7 +89,7 @@ namespace FCMDotNetTest
             var res = builder.Build();
 
             Assert.That(res.To, Is.Null);
-            Assert.That(res.RegIds, Is.EquivalentTo(regIds));
+            Assert.That(res.Registration_Ids, Is.EquivalentTo(regIds));
         }
 
         [Test]
