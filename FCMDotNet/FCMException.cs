@@ -9,11 +9,11 @@ namespace FCMDotNet
 {
     public class FCMException : Exception
     {
-        private readonly FCMResponse _response;
+        public FCMResponse Response { get; }
 
         public FCMException(FCMResponse response)
         {
-            _response = response;
+            Response = response;
         }
     }
 }
